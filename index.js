@@ -3,6 +3,7 @@ const express = require("express");
 const URL = require('./models/urlmodel');
 const urlRoute = require('./routes/urlroutes'); 
 const {connectToMongoDB} = require("./config/connection");
+const path = require('path')
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -11,6 +12,8 @@ const PORT = 8001;
 
 console.log(process.env.MONGO_URI);
 const connectdb =  connectToMongoDB(process.env.MONGO_URI);
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(express.json());
